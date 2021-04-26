@@ -14,12 +14,13 @@ const StyledCard = styled.div`
   color: #2196f3;
 `;
 
-const AddButton = styled.span`
+const Button = styled.span`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-size: 13px;
   padding: 1.5em;
   border: 1px solid #2196f3;
   border-radius: 4px;
@@ -33,10 +34,10 @@ const AddButton = styled.span`
 
 const ButtonSquare = ({ onClick, title }) => (
   <StyledCard>
-    <AddButton onClick={onClick}>
-      <Icon icon="add" color="#2196f3" size={42} />
+    <Button onClick={onClick}>
+      <Icon icon="add" color="#2196f3" size={36} />
       {title}
-    </AddButton>
+    </Button>
   </StyledCard>
 );
 

@@ -14,21 +14,21 @@ const SubTitle = styled.div`
   font-size: 11px;
 `;
 
-const TitleSubTitle = ({ title, subtitle }) => (
+const TitleSubtitle = ({ title, subtitle }) => (
   <Container>
     <Title>{title}</Title>
     <SubTitle>{subtitle}</SubTitle>
   </Container>
 );
 
-export default TitleSubTitle;
+export default TitleSubtitle;
 
-TitleSubTitle.propTypes = {
+TitleSubtitle.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
 };
 
-TitleSubTitle.defaultProps = {
+TitleSubtitle.defaultProps = {
   title: 'Title',
   subtitle: 'Subtitle',
 };

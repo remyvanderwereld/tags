@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Icon from '../Icon';
 
-const MAX_SIZE = 20;
+const MAX_CHAR_SIZE = 20;
 
 const StyledTag = styled.div`
   background: #757575;
   color: white;
+  font-size: 12px;
   font-weight: 600;
   border-radius: 14px;
   border: transparent;
@@ -27,13 +28,14 @@ const CloseIcon = styled.span`
   margin-left: 4px;
 `;
 
-const Tag = ({ name, onClose }) => {
-  const isLongTag = name.length > MAX_SIZE;
+const Tag = ({ tag, onClose }) => {
+  const { name, id } = tag;
+  const isLongTag = name.length > MAX_CHAR_SIZE;
   return (
     <StyledTag>
-      {isLongTag ? `${name.slice(0, MAX_SIZE)}...` : name}
-      <CloseIcon onClick={() => onClose(name)}>
-        <Icon icon="close" color="white" />
+      {isLongTag ? `${name.slice(0, MAX_CHAR_SIZE)}...` : name}
+      <CloseIcon onClick={() => onClose(id)}>
+        <Icon icon="close" color="white" size={14} />
       </CloseIcon>
     </StyledTag>
   );
@@ -42,10 +44,9 @@ const Tag = ({ name, onClose }) => {
 export default Tag;
 
 Tag.propTypes = {
-  name: PropTypes.string,
+  tag: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
   onClose: PropTypes.func.isRequired,
-};
-
-Tag.defaultProps = {
-  name: 'No name',
 };

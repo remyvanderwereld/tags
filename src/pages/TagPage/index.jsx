@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import GroupCard from '../../components/GroupCard';
+import GroupCard from './GroupCard';
 import ButtonSquare from '../../components/ButtonSquare';
 import API from '../../services/api';
 
@@ -11,32 +11,37 @@ const StyledPage = styled.div`
 
 const TagPage = () => {
   const [groups, setGroups] = useState([]);
-  const [count, setCount] = useState(5);
 
   useEffect(() => {
     API.get('groups')
       .then((resp) => {
         setGroups(resp.data);
-        console.log('TEST', resp.data);
+        console.log('GROUPS FETCHED', resp.data);
       })
-      .catch((err) => console.log('Error fetching data', err));
+      .catch((err) => console.log('Error fetching groups', err));
   }, []);
 
   const addGroup = () => {
-    setCount((prev) => prev + 1);
-    setGroups((prevGroup) => [...prevGroup, count]);
+    API.post('groups')
+      .then((resp) => {
+        setGroups((prevGroup) => [...prevGroup, resp.data]);
+      })
+      .catch((err) => console.log('Error creating new group', err));
   };
 
-  const removeGroup = (removedId) => {
-    console.log('removeGroup', removedId);
-    const newGroup = groups.filter((group) => group.id !== removedId);
-    setGroups(newGroup);
+  const deleteGroup = (id) => {
+    API.delete(`groups/${id}`)
+      .then((resp) => {
+        const newGroup = groups.filter((group) => group.id !== resp.data.id);
+        setGroups(newGroup);
+      })
+      .catch((err) => console.log('Error deleting group', err));
   };
 
   return (
     <StyledPage>
       {groups.map((group) => (
-        <GroupCard key={group.id} group={group} onClose={removeGroup} />
+        <GroupCard key={group.id} group={group} onClose={deleteGroup} />
       ))}
       <ButtonSquare onClick={addGroup} title="New group" />
     </StyledPage>

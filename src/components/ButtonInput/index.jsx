@@ -36,7 +36,6 @@ const ButtonInput = ({ onSubmit, title }) => {
 
   useEffect(() => {
     if (inputVisible) {
-      console.log('textInput useEffect', textInput);
       // Set focus on input field when input is visible.
       textInput.current.focus();
     }
@@ -45,7 +44,6 @@ const ButtonInput = ({ onSubmit, title }) => {
   const handleKeyDown = (event) => {
     // Create tag onEnter, hide and clear input.
     if (event.key === 'Enter') {
-      console.log('do validate', editInputValue);
       onSubmit(editInputValue);
       setInputVisible(false);
       setEditInputValue('');
@@ -62,6 +60,7 @@ const ButtonInput = ({ onSubmit, title }) => {
         }}
         placeholder="Enter name..."
         onKeyDown={handleKeyDown}
+        maxLength={128}
       />
     );
   }

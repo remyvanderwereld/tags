@@ -3,16 +3,13 @@ import styled from 'styled-components';
 import iconPath from './IconsLib';
 
 const StyledSvg = styled.svg`
-  display: 'inline-block', verticalAlign: 'middle'
+  display: inline-block;
+  vertical-align: middle;
 `;
-const defaultStyles = { display: 'inline-block', verticalAlign: 'middle' };
 
-const Icon = ({ size, color, icon, className, style, viewBox }) => {
-  const styles = { ...defaultStyles, ...style };
+const Icon = ({ size, color, icon, viewBox }) => {
   return (
-    <svg
-      className={className}
-      style={styles}
+    <StyledSvg
       viewBox={viewBox}
       width={`${size}px`}
       height={`${size}px`}
@@ -20,7 +17,7 @@ const Icon = ({ size, color, icon, className, style, viewBox }) => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <path fill={color} d={iconPath[icon]} />
-    </svg>
+    </StyledSvg>
   );
 };
 
@@ -31,14 +28,10 @@ Icon.propTypes = {
   color: PropTypes.string,
   icon: PropTypes.string.isRequired,
   viewBox: PropTypes.string,
-  style: PropTypes.shape(PropTypes.object),
-  className: PropTypes.string,
 };
 
 Icon.defaultProps = {
   size: 16,
   color: '#000000',
   viewBox: '0 0 24 24',
-  style: {},
-  className: '',
 };

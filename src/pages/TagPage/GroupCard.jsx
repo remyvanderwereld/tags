@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ButtonInput from '../ButtonInput';
-import Tag from '../Tag';
-import Icon from '../Icon';
-import GroupTitle from './GroupTitle';
+import ButtonInput from '../../components/ButtonInput';
+import Tag from '../../components/Tag';
+import Icon from '../../components/Icon';
+import TitleSubTitle from '../../components/TitleSubTitle';
+import API from '../../services/api';
 
 const StyledCard = styled.div`
   width: 300px;
@@ -15,8 +16,8 @@ const StyledCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin: 16px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 1px 2px, rgb(0 0 0 / 5%) 0px 0px 0px 1px;
   border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 1px 2px, rgb(0 0 0 / 5%) 0px 0px 0px 1px;
   animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 `;
 
@@ -44,28 +45,44 @@ const CardFooter = styled.div`
 `;
 
 const GroupCard = ({ group, onClose }) => {
-  const [tags, setTags] = useState(['test']);
+  const [tags, setTags] = useState([]);
 
-  const addTag = (tagName) => {
-    setTags((prevTagGroup) => [...prevTagGroup, tagName]);
+  useEffect(() => {
+    API.get(`groups/${group.id}/tags`)
+      .then((resp) => {
+        setTags(resp.data);
+      })
+      .catch((err) => console.log('Error fetching groups', err));
+  }, [group.id]);
+
+  const addTag = (name) => {
+    API.post(`groups/${group.id}/tags`, { name })
+      .then((resp) => {
+        setTags((prevTags) => [...prevTags, resp.data]);
+      })
+      .catch((err) => console.log('Error creating new group', err));
   };
 
-  const removeTag = (removedTag) => {
-    const newTags = tags.filter((tag) => tag !== removedTag);
-    setTags(newTags);
+  const deleteTag = (id) => {
+    API.delete(`groups/${group.id}/tags/${id}`)
+      .then((resp) => {
+        const newTags = tags.filter((tag) => tag.id !== resp.data.id);
+        setTags(newTags);
+      })
+      .catch((err) => console.log('Error deleting group', err));
   };
-  console.log('Title', group);
+
   return (
     <StyledCard>
       <CardHeader>
-        <GroupTitle title={group.name} />
+        <TitleSubTitle title={group.name} subtitle="Group" />
         <CloseIcon onClick={() => onClose(group.id)}>
           <Icon icon="close" color="black" />
         </CloseIcon>
       </CardHeader>
       <StyledGroup>
         {tags.map((tag) => (
-          <Tag key={tag} name={tag} onClose={removeTag} />
+          <Tag key={tag.id} tag={tag} onClose={deleteTag} />
         ))}
       </StyledGroup>
       <CardFooter>
@@ -86,5 +103,5 @@ GroupCard.propTypes = {
 };
 
 GroupCard.defaultProps = {
-  name: '',
+  name: 'Title',
 };

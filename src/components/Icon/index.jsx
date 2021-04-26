@@ -7,19 +7,17 @@ const StyledSvg = styled.svg`
   vertical-align: middle;
 `;
 
-const Icon = ({ size, color, icon, viewBox }) => {
-  return (
-    <StyledSvg
-      viewBox={viewBox}
-      width={`${size}px`}
-      height={`${size}px`}
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-    >
-      <path fill={color} d={iconPath[icon]} />
-    </StyledSvg>
-  );
-};
+const Icon = ({ size, color, icon, viewBox }) => (
+  <StyledSvg
+    viewBox={viewBox}
+    width={`${size}px`}
+    height={`${size}px`}
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+  >
+    <path fill={color} d={iconPath[icon]} />
+  </StyledSvg>
+);
 
 export default Icon;
 

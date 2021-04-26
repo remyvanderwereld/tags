@@ -16,7 +16,6 @@ const TagPage = () => {
     API.get('groups')
       .then((resp) => {
         setGroups(resp.data);
-        console.log('GROUPS FETCHED', resp.data);
       })
       .catch((err) => console.log('Error fetching groups', err));
   }, []);

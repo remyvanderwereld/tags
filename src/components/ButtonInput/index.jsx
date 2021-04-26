@@ -61,11 +61,13 @@ const ButtonInput = ({ onSubmit, title }) => {
         placeholder="Enter name..."
         onKeyDown={handleKeyDown}
         maxLength={128}
+        type="text"
+        id="input-text"
       />
     );
   }
   return (
-    <Button type="submit" onClick={() => setInputVisible(true)}>
+    <Button id="button-input" onClick={() => setInputVisible(true)}>
       {title}
     </Button>
   );

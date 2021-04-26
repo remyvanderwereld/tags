@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ButtonInput from '../../components/ButtonInput';
 import Tag from '../../components/Tag';
 import Icon from '../../components/Icon';
-import TitleSubTitle from '../../components/TitleSubTitle';
+import TitleSubtitle from '../../components/TitleSubtitle';
 import API from '../../services/api';
 
 const StyledCard = styled.div`
@@ -75,7 +75,7 @@ const GroupCard = ({ group, onClose }) => {
   return (
     <StyledCard>
       <CardHeader>
-        <TitleSubTitle title={group.name} subtitle="Group" />
+        <TitleSubtitle title={group.name} subtitle="Group" />
         <CloseIcon onClick={() => onClose(group.id)}>
           <Icon icon="close" color="black" />
         </CloseIcon>
@@ -100,8 +100,4 @@ GroupCard.propTypes = {
     name: PropTypes.string.isRequired,
   }).isRequired,
   onClose: PropTypes.func.isRequired,
-};
-
-GroupCard.defaultProps = {
-  name: 'Title',
 };

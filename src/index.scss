@@ -1,16 +1,9 @@
-$primary-color-dark: #1976d2;
-$primary-color: #2196f3;
-$primary-color-light: #bbdefb;
-$primary-color-text: #ffffff;
-$accent-color: #03a9f4;
-$primary-text-color: #212121;
-$secondary-text-color: #757575;
-$divider-color: #bdbdbd;
+$font-name: Avenir Next, Arial, sans-serif;
 
 body {
   background-color: rgb(244, 245, 247);
   margin: 0;
-  font-family: Avenir Next, Arial, sans-serif;
+  font-family: $font-name;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-touch-callout: none; /* iOS Safari */
@@ -27,7 +20,7 @@ code {
 }
 
 button {
-  font-family: Avenir Next, Arial, sans-serif;
+  font-family: $font-name;
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
@@ -35,7 +28,7 @@ button {
 }
 
 input {
-  font-family: Avenir Next, Arial, sans-serif;
+  font-family: $font-name;
 }
 
 /**

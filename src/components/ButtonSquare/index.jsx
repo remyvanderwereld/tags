@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Icon from '../Icon';
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import Icon from '../Icon'
 
 const StyledCard = styled.div`
   width: 300px;
@@ -11,7 +11,7 @@ const StyledCard = styled.div`
   margin: 16px;
   text-transform: uppercase;
   color: #2196f3;
-`;
+`
 
 const Button = styled.button`
   display: flex;
@@ -32,7 +32,7 @@ const Button = styled.button`
   &:focus-visible {
     outline-color: #1976d2;
   }
-`;
+`
 
 const ButtonSquare = ({ onClick, title }) => (
   <StyledCard>
@@ -41,15 +41,15 @@ const ButtonSquare = ({ onClick, title }) => (
       {title}
     </Button>
   </StyledCard>
-);
+)
 
-export default ButtonSquare;
+export default ButtonSquare
 
 ButtonSquare.propTypes = {
   onClick: PropTypes.func.isRequired,
   title: PropTypes.string,
-};
+}
 
 ButtonSquare.defaultProps = {
   title: 'Add',
-};
+}

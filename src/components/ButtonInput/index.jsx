@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { useEffect, useRef, useState } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 const Input = styled.input`
   width: 100%;
@@ -12,7 +12,7 @@ const Input = styled.input`
   &:focus {
     border-color: #2196f3;
   }
-`;
+`
 
 const Button = styled.button`
   width: 100%;
@@ -27,28 +27,28 @@ const Button = styled.button`
     outline: 0;
     background: #1976d2;
   }
-`;
+`
 
 const ButtonInput = ({ onSubmit, title }) => {
-  const [inputVisible, setInputVisible] = useState(false);
-  const [editInputValue, setEditInputValue] = useState('');
-  const textInput = useRef(null);
+  const [inputVisible, setInputVisible] = useState(false)
+  const [editInputValue, setEditInputValue] = useState('')
+  const textInput = useRef(null)
 
   useEffect(() => {
     if (inputVisible) {
       // Set focus on input field when input is visible.
-      textInput.current.focus();
+      textInput.current.focus()
     }
-  }, [inputVisible]);
+  }, [inputVisible])
 
   const handleKeyDown = (event) => {
     // Create tag onEnter, hide and clear input.
     if (event.key === 'Enter') {
-      onSubmit(editInputValue);
-      setInputVisible(false);
-      setEditInputValue('');
+      onSubmit(editInputValue)
+      setInputVisible(false)
+      setEditInputValue('')
     }
-  };
+  }
 
   if (inputVisible) {
     return (
@@ -56,7 +56,7 @@ const ButtonInput = ({ onSubmit, title }) => {
         ref={textInput}
         value={editInputValue}
         onChange={(e) => {
-          setEditInputValue(e.target.value);
+          setEditInputValue(e.target.value)
         }}
         placeholder="Enter name..."
         onKeyDown={handleKeyDown}
@@ -64,22 +64,22 @@ const ButtonInput = ({ onSubmit, title }) => {
         type="text"
         id="input-text"
       />
-    );
+    )
   }
   return (
     <Button id="button-input" onClick={() => setInputVisible(true)}>
       {title}
     </Button>
-  );
-};
+  )
+}
 
-export default ButtonInput;
+export default ButtonInput
 
 ButtonInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   title: PropTypes.string,
-};
+}
 
 ButtonInput.defaultProps = {
   title: 'Add',
-};
+}

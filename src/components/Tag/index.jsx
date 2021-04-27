@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Icon from '../Icon';
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import Icon from '../Icon'
 
-const MAX_CHAR_SIZE = 20;
+const MAX_CHAR_SIZE = 20
 
 const StyledTag = styled.div`
   background: #757575;
@@ -21,27 +21,30 @@ const StyledTag = styled.div`
     outline: 0;
     background: #5c5a58;
   }
-`;
+`
 
-const CloseIcon = styled.span`
+const CloseButton = styled.button`
   cursor: pointer;
   margin-left: 4px;
-`;
+  background-color: transparent;
+  border: 0;
+  padding: 0px;
+`
 
 const Tag = ({ tag, onClose }) => {
-  const { name, id } = tag;
-  const isLongTag = name.length > MAX_CHAR_SIZE;
+  const { name, id } = tag
+  const isLongTag = name.length > MAX_CHAR_SIZE
   return (
     <StyledTag>
       {isLongTag ? `${name.slice(0, MAX_CHAR_SIZE)}...` : name}
-      <CloseIcon onClick={() => onClose(id)}>
+      <CloseButton id={`close-button-${name}`} onClick={() => onClose(id)}>
         <Icon icon="close" color="white" size={14} />
-      </CloseIcon>
+      </CloseButton>
     </StyledTag>
-  );
-};
+  )
+}
 
-export default Tag;
+export default Tag
 
 Tag.propTypes = {
   tag: PropTypes.shape({
@@ -49,4 +52,4 @@ Tag.propTypes = {
     name: PropTypes.string.isRequired,
   }).isRequired,
   onClose: PropTypes.func.isRequired,
-};
+}

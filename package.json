@@ -20,6 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,scss,css}\"",
+    "cypress:run": "cypress run",
     "cypress:open": "cypress open"
   },
   "eslintConfig": {

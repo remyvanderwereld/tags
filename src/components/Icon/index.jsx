@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import iconPath from './IconsLib';
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import iconPath from './IconsLib'
 
 const StyledSvg = styled.svg`
   display: inline-block;
   vertical-align: middle;
-`;
+`
 
 const Icon = ({ size, color, icon, viewBox }) => (
   <StyledSvg
@@ -17,19 +17,19 @@ const Icon = ({ size, color, icon, viewBox }) => (
   >
     <path fill={color} d={iconPath[icon]} />
   </StyledSvg>
-);
+)
 
-export default Icon;
+export default Icon
 
 Icon.propTypes = {
   size: PropTypes.number,
   color: PropTypes.string,
   icon: PropTypes.string.isRequired,
   viewBox: PropTypes.string,
-};
+}
 
 Icon.defaultProps = {
   size: 16,
   color: '#000000',
   viewBox: '0 0 24 24',
-};
+}
